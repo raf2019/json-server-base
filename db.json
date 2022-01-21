@@ -6,6 +6,51 @@
       "name": "Kenzinho",
       "age": 38,
       "id": 1
+    },
+    {
+      "email": "ken@mail.com",
+      "password": "$2a$10$Cp6dgrrZoQjUaj8hdWWlguLY8jvri7USXE2n0/fMvi9ZYHfj8wXX2",
+      "name": "Ken",
+      "age": 38,
+      "id": 2
+    }
+  ],
+  "courses": [
+    {
+      "course_name": "front end developer",
+      "course_description": "developing for the future",
+      "id": 1,
+      "userId": 2
+    },
+    {
+      "course_name": "backend end developer",
+      "course_description": "backing to the future",
+      "id": 2,
+      "userId": 2
+    },
+    {
+      "course_name": ".net",
+      "course_description": "n",
+      "userId": 2,
+      "id": 3
+    },
+    {
+      "course_name": "html",
+      "course_description": "n",
+      "userId": 2,
+      "id": 4
+    }
+  ],
+  "disciplines": [
+    {
+      "discipline_name": "react",
+      "discipline_description": "create interfaces",
+      "id": 1
+    },
+    {
+      "discipline_name": "node",
+      "discipline_description": "build scalable applications",
+      "id": 2
     }
   ]
 }
