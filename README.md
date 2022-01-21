@@ -1,153 +1,209 @@
 # json-server-base
 
-Esse é o repositório com a base de JSON-Server + JSON-Server-Auth já configurada, feita para ser usada no desenvolvimento das API's nos Capstones do Q2.
+Esse é o repositório com a base de JSON-Server + JSON-Server-Auth para ser usada no desenvolvimento da API de cursos.
 
 ## Endpoints
 
-Assim como a documentação do JSON-Server-Auth traz (https://www.npmjs.com/package/json-server-auth), existem 3 endpoints que podem ser utilizados para cadastro e 2 endpoints que podem ser usados para login.
+Assim como a documentação do JSON-Server-Auth traz (https://www.npmjs.com/package/json-server-auth), existem 3 endpoints que podem ser utilizados para cadastro e 2 endpoints que podem ser usados para login. Adicionalmente há 2 endpoints para iniciar, contendo a lista de cursos e a lista de disciplinas.
 
-### Cadastro
+## Cadastro
 
 POST /register <br/>
 POST /signup <br/>
-POST /users
-formato da requisição:
+POST /users <br/><br/>
+Formato da requisição:
+
+```json
 {
-"email": "kenzinho@mail.com",
-"password": "123456",
-"name": "Kenzinho",
-"age": 38,
+  "email": "kenzinho@mail.com",
+  "password": "123456",
+  "name": "Kenzinho",
+  "age": 38
 }
-formato da resposta:
+```
+
+Formato da resposta:
+
+```json
 {
-"email": "kenzinho@mail.com",
-"password": "$2a$10$YQiiz0ANVwIgpOjYXPxc0O9H2XeX3m8OoY1xk7OGgxTnOJnsZU7FO",
-"name": "Kenzinho",
-"age": 38,
-"id": 1
+  "email": "kenzinho@mail.com",
+  "password": "$2a$10$YQiiz0ANVwIgpOjYXPxc0O9H2XeX3m8OoY1xk7OGgxTnOJnsZU7FO",
+  "name": "Kenzinho",
+  "age": 38,
+  "id": 1
 }
+```
 
 Qualquer um desses 3 endpoints irá cadastrar o usuário na lista de "Users", sendo que os campos obrigatórios são os de email e password.
 Você pode ficar a vontade para adicionar qualquer outra propriedade no corpo do cadastro dos usuários.
 
-### Login
+## Login
 
 POST /login <br/>
-POST /signin
+POST /signin <br/><br/>
 Qualquer um desses 2 endpoints pode ser usado para realizar login com um dos usuários cadastrados na lista de "Users"
 
-formato da requisição:
-{
-"email": "kenzinho@mail.com",
-"password": "123456",
-"name": "Kenzinho",
-"age": 38,
-}
-formato da resposta:
-{
-"email": "kenzinho@mail.com",
-"password": "$2a$10$YQiiz0ANVwIgpOjYXPxc0O9H2XeX3m8OoY1xk7OGgxTnOJnsZU7FO",
-"name": "Kenzinho",
-"age": 38,
-"id": 1
-}
+Formato da requisição:
 
-### Curso
+```json
+{
+  "email": "kenzinho@mail.com",
+  "password": "123456",
+  "name": "Kenzinho",
+  "age": 38
+}
+```
+
+Formato da resposta:
+
+```json
+{
+  "email": "kenzinho@mail.com",
+  "password": "$2a$10$YQiiz0ANVwIgpOjYXPxc0O9H2XeX3m8OoY1xk7OGgxTnOJnsZU7FO",
+  "name": "Kenzinho",
+  "age": 38,
+  "id": 1
+}
+```
+
+## Curso
 
 Quando logado, você cria seu curso para poder ter acesso à quais disciplinas quer adicionar
 
-Vodos os cursos:
-GET /courses
-formato da resposta:
+### Ver todos os cursos:
+
+GET /courses <br/><br/>
+Formato da resposta:
+
+```json
 [
-{
-"course_name": "front end developer",
-"course_description": "developing for the future",
-"id": 1
-},
-{
-"course_name": "backend end developer",
-"course_description": "backing to the future",
-"id": 2
-}
+  {
+    "course_name": "front end developer",
+    "course_description": "developing for the future",
+    "id": 1
+  },
+  {
+    "course_name": "backend end developer",
+    "course_description": "backing to the future",
+    "id": 2
+  }
 ]
+```
 
-Adicionar curso:
-POST /courses
-formato de envio do JSON:
-{
-"course_name": "backend end developer",
-"course_description": "backing to the future",
-"userId: 2"
-}
-formato da resposta:
-{
-"course_name": "backend end developer",
-"course_description": "backing to the future",
-"userId: 2"
-"id": 3
-}
+### Adicionar curso:
 
-Atualizar curso:
-PATCH /courses/:course_id
-formato de envio do JSON:
-{
-"course_description": "new description",
-}
-formato da resposta:
-{
-"course_description": "new description",
-}
+POST /courses <br/><br/>
+Formato de envio do JSON:
 
-Excluir cursos:
-DELETE /courses/:course_id
+```json
+{
+  "course_name": "backend end developer",
+  "course_description": "backing to the future",
+  "userId: 2"
+}
+```
+
+Formato da resposta:
+
+```json
+{
+  "course_name": "backend end developer",
+  "course_description": "backing to the future",
+  "userId: 2"
+  "id": 3
+}
+```
+
+### Atualizar curso:
+
+PATCH /courses/:course_id <br/><br/>
+Formato de envio do JSON:
+
+```json
+{
+  "course_description": "new description"
+}
+```
+
+Formato da resposta:
+
+```json
+{
+  "course_description": "new description"
+}
+```
+
+### Excluir cursos:
+
+DELETE /courses/:course_id <br/>
 Nota: não é necessário um corpo da requisição (JSON)
 
-### Disciplina
+## Disciplina
 
 Quando logado, você cria sua disciplinas para poder associar aos cursos (você também pode consultar todas as disciplinas mesmo não logado)
 
-Ver todas as disciplinas:
-GET /disciplinas
-formato da resposta:
+### Ver todas as disciplinas:
+
+GET /disciplinas <br/><br/>
+Formato da resposta:
+
+```json
 [
-{
-"discipline_name": "react",
-"discipline_description": "create interfaces",
-"id": 1
-},
-{
-"discipline_name": "node",
-"discipline_description": "build scalable applications",
-"id": 2
-}
+  {
+    "discipline_name": "react",
+    "discipline_description": "create interfaces",
+    "id": 1
+  },
+  {
+    "discipline_name": "node",
+    "discipline_description": "build scalable applications",
+    "id": 2
+  }
 ]
+```
 
-Adicionar disciplina:
-POST /disciplinas
-formato de envio do JSON:
-{
-"discipline_name": "react",
-"discipline_description": "create interfaces"
-}
-formato da resposta:
-{
-"discipline_name": "react",
-"discipline_description": "create interfaces",
-"id": 1
-}
+### Adicionar disciplina:
 
-Atualizar disciplina:
-PATCH /disciplinas/:discipline_id
-formato de envio do JSON:
-{
-"discipline_description": "new description",
-}
-formato da resposta:
-{
-"discipline_description": "new description",
-}
+POST /disciplinas <br/><br/>
+Formato de envio do JSON:
 
-Excluir disciplinas:
-DELETE /disciplinas/:discipline_id
+```json
+{
+  "discipline_name": "react",
+  "discipline_description": "create interfaces"
+}
+```
+
+Formato da resposta:
+
+```json
+{
+  "discipline_name": "react",
+  "discipline_description": "create interfaces",
+  "id": 1
+}
+```
+
+### Atualizar disciplina:
+
+PATCH /disciplinas/:discipline_id <br/><br/>
+Formato de envio do JSON:
+
+```json
+{
+  "discipline_description": "new description"
+}
+```
+
+Formato da resposta:
+
+```json
+{
+  "discipline_description": "new description"
+}
+```
+
+### Excluir disciplinas:
+
+DELETE /disciplinas/:discipline_id <br/>
 Nota: não é necessário um corpo da requisição (JSON)
